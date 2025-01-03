@@ -1,0 +1,53 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   reverse_rotate.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ehenry <ehenry@student.42luxembourg.lu>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/03 20:03:11 by ehenry            #+#    #+#             */
+/*   Updated: 2025/01/03 20:31:06 by ehenry           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../include/push_swap.h"
+
+void	rra(t_stack *stack)
+{
+	t_node	*last;
+	t_node	*next_last;
+
+	if (!stack || stack->size < 2)
+		return;
+	next_last = stack->top;
+	while (next_last->next && next_last->next->next)
+		next_last = next_last->next;
+	last = next_last->next;
+	next_last->next = NULL;
+	last->next = stack->top;
+	stack->top = last;
+	write (1, "rra\n", 4);
+}
+void	rrb(t_stack *stack)
+{
+	t_node	*last;
+	t_node	*next_last;
+
+	if (!stack || stack->size < 2)
+		return;
+	next_last = stack->top;
+	while (next_last->next && next_last->next->next)
+		next_last = next_last->next;
+	last = next_last->next;
+	next_last->next = NULL;
+	last->next = stack->top;
+	stack->top = last;
+	write (1, "rrb\n", 4);
+}
+
+void	rrr(t_stack *stack_a, t_stack *stack_b)
+{
+	rra(stack_a);
+	rrb(stack_b);
+	write (1, "rrr\n", 4);
+}
