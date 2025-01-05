@@ -9,12 +9,14 @@ RM = rm -f
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-SRCS = srcs/init_stack.c\
-		srcs/push.c\
-		srcs/reverse_rotate.c\
-		srcs/rotate.c\
-		srcs/swap.c\
-		srcs/utils.c
+SRCS = srcs/main.c\
+		srcs/utils.c\
+		srcs/parsing.c\
+		srcs/check.c\
+		srcs/operation/push.c\
+		srcs/operation/reverse_rotate.c\
+		srcs/operation/rotate.c\
+		srcs/operation/swap.c
 
 OBJS = $(SRCS:.c=.o)
 
