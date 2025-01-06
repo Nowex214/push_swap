@@ -6,7 +6,7 @@
 /*   By: ehenry <ehenry@student.42luxembourg.lu>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 14:11:34 by ehenry            #+#    #+#             */
-/*   Updated: 2025/01/05 16:50:06 by ehenry           ###   ########.fr       */
+/*   Updated: 2025/01/06 13:18:45 by ehenry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	is_digit(const char *str)
 	}
 	return (1);
 }
-//Check si *res rentre en conflit avec res dans mon atoi dans libft
-int	atoi_swap(const char *str, int *res_s)
+
+int	check_atoi(const char *str, int *res_s)
 {
 	if (!is_digit(str))
 	{
@@ -39,9 +39,7 @@ int	atoi_swap(const char *str, int *res_s)
 		return (0);
 	}
 	*res_s = ft_atoi_custom(str);
-	ft_printf("coverted '%s' to '%d'\n", str, res_s);
-	if (*res_s < INT_MIN || *res_s > INT_MAX)
-		return (0);
+	ft_printf("coverted '%s' to '%d'\n", str, *res_s);
 	return (1);
 }
 
@@ -71,5 +69,5 @@ void	add_node(t_stack *stack, int value)
 	new->next = stack->top;
 	stack->top = new;
 	stack->size++;
-	ft_printf("Value add %d\n");
+	ft_printf("Value add %d\n", new->value);
 }

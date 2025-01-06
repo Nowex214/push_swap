@@ -6,7 +6,7 @@
 /*   By: ehenry <ehenry@student.42luxembourg.lu>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 14:56:00 by ehenry            #+#    #+#             */
-/*   Updated: 2025/01/05 16:42:00 by ehenry           ###   ########.fr       */
+/*   Updated: 2025/01/06 13:26:34 by ehenry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	invalid_value(char *arg, int *value)
 {
-	if (!atoi_swap(arg, value))
+	if (!check_atoi(arg, value))
 	{
 		ft_printf("Error: invalid value '%s'\n", arg);
 		return (0);

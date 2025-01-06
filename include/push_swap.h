@@ -6,7 +6,7 @@
 /*   By: ehenry <ehenry@student.42luxembourg.lu>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 15:35:35 by ehenry            #+#    #+#             */
-/*   Updated: 2025/01/05 16:39:24 by ehenry           ###   ########.fr       */
+/*   Updated: 2025/01/06 16:24:51 by ehenry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ typedef struct	s_stack
 	char	id;
 	t_node	*top;
 }	t_stack;
-
+//quickSort
+void		quickSort(int *arr, int low, int high);
 //parser
 int			parsing(int ac, char **av, t_stack *stack);
 int			single_argument(char *arg, t_stack *stack);
@@ -36,7 +37,7 @@ int			args_duplicate_check(t_stack *stack, int value);
 int			invalid_value(char *arg, int *value);
 //Check stack
 int			is_digit(const char *str);
-int			atoi_swap(const char *str, int *res);
+int			check_atoi(const char *str, int *res_s);
 int			duplicate_check(t_stack *stack, int value);
 void		add_node(t_stack *stack, int value);
 //utils

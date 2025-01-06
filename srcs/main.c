@@ -6,7 +6,7 @@
 /*   By: ehenry <ehenry@student.42luxembourg.lu>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 18:18:05 by ehenry            #+#    #+#             */
-/*   Updated: 2025/01/05 16:46:02 by ehenry           ###   ########.fr       */
+/*   Updated: 2025/01/06 16:28:55 by ehenry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	ft_printf("Stacks successfully init and parsed\n");
+	
 	free_stack(stack_a);
 	free_stack(stack_b);
 	return (0);

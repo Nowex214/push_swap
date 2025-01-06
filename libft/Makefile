@@ -85,17 +85,16 @@ all: $(NAME)
 
 $(NAME): $(OBJS) $(OBJS_PRINTF) $(OBJS_GNL) $(OBJS_BONUS)
 	@$(AR) $(NAME) $(OBJS) $(OBJS_PRINTF) $(OBJS_GNL) $(OBJS_BONUS) || { $(ECHO) "$(RED)Error: Compilation failed!$(DEF_COLOR)"; exit 1; }
-	@printf "\r\033[K$(WHITE)Progress: [%d/%d] 100%% > $(DEF_COLOR) $(GREEN)Compilation completed$(DEF_COLOR)\n" $(TOTAL_OBJS) $(TOTAL_OBJS)
+	@printf "\r\033[K$(BLUE) Libft $(DEF_COLOR)$(WHITE)Progress: [%d/%d] 100%% > $(DEF_COLOR) $(GREEN)Compilation completed$(DEF_COLOR)\n" $(TOTAL_OBJS) $(TOTAL_OBJS)
 
 %.o: %.c
 	$(eval CURRENT := $(shell echo $$(($(CURRENT)+1))))
 	@$(CC) $(CFLAGS) -c $< -o $@ || { $(ECHO) "$(RED)Error: Compilation failed for $<!$(DEF_COLOR)"; exit 1; }
-	@printf "\r\033[K$(WHITE)Progress: [%d/%d] %d%% $(DEF_COLOR) > $(YELLOW)Compiling: %s$(DEF_COLOR)" $(CURRENT) $(TOTAL_OBJS) $$(($(CURRENT)*100/$(TOTAL_OBJS))) $<
+	@printf "\r\033[K$(BLUE) Libft $(DEF_COLOR) $(WHITE) Progress: [%d/%d] %d%% $(DEF_COLOR) > $(YELLOW)Compiling: %s$(DEF_COLOR)" $(CURRENT) $(TOTAL_OBJS) $$(($(CURRENT)*100/$(TOTAL_OBJS))) $<
 	@sleep 0.00001
 
 clean:
 	@rm -f $(OBJS) $(OBJS_BONUS) $(OBJS_PRINTF) $(OBJS_GNL)
-	@$(ECHO) "$(BLUE)Cleaning completed!$(DEF_COLOR)"
 
 fclean: clean
 	@rm -f $(NAME)

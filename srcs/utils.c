@@ -6,7 +6,7 @@
 /*   By: ehenry <ehenry@student.42luxembourg.lu>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 18:44:28 by ehenry            #+#    #+#             */
-/*   Updated: 2025/01/05 16:39:15 by ehenry           ###   ########.fr       */
+/*   Updated: 2025/01/06 13:14:16 by ehenry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	free_split(char **split)
 
 int	ft_atoi_custom(const char *str)
 {
-	int		sign;
+	long	sign;
 	long	result;
 
 	sign = 1;
@@ -56,5 +56,8 @@ int	ft_atoi_custom(const char *str)
 		result = result * 10 + (*str - '0');
 		str++;
 	}
-	return ((int)(result * sign));
+	result *= sign;
+	if (result < INT_MIN || result > INT_MAX)
+		return (0);
+	return ((int)(result));
 }
