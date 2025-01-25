@@ -6,23 +6,27 @@
 /*   By: ehenry <ehenry@student.42luxembourg.lu>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 14:56:00 by ehenry            #+#    #+#             */
-/*   Updated: 2025/01/06 13:26:34 by ehenry           ###   ########.fr       */
+/*   Updated: 2025/01/25 18:28:07 by ehenry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	invalid_value(char *arg, int *value)
+static int	invalid_value(char *arg, int *value)
 {
-	if (!check_atoi(arg, value))
+	long	tmp;
+	
+	tmp = ft_atoi(arg);
+	if (tmp < INT_MIN || tmp > INT_MAX)
 	{
 		ft_printf("Error: invalid value '%s'\n", arg);
 		return (0);
 	}
+	*value =(int)tmp;
 	return (1);
 }
 
-int	args_duplicate_check(t_stack *stack, int value)
+static int	args_duplicate_check(t_stack *stack, int value)
 {
 	if (duplicate_check(stack, value))
 	{
@@ -32,20 +36,20 @@ int	args_duplicate_check(t_stack *stack, int value)
 	return (1);
 }
 
-int	single_argument(char *arg, t_stack *stack)
+static int process_single_argument(char *arg, t_stack *stack)
 {
-	int		i;
-	int		value;
-	char	**args;
+	int i;
+	int value;
+	char **args;
 
-	value = 0;
-	i = 0;
-	args = ft_split(arg, 32);
+	args = ft_split(arg, ' ');
 	if (!args)
 	{
 		ft_printf("Error: allocation failed\n");
+		free_stack_on_error(stack);
 		return (0);
 	}
+	i = 0;
 	while (args[i])
 	{
 		if (!invalid_value(args[i], &value) || !args_duplicate_check(stack, value))
@@ -54,25 +58,25 @@ int	single_argument(char *arg, t_stack *stack)
 			return (0);
 		}
 		add_node(stack, value);
-		ft_printf("add value single arg '%d'\n", value);
 		i++;
 	}
 	free_split(args);
 	return (1);
 }
 
-int	parsing(int ac, char **av, t_stack *stack)
-{
-	int	i;
-	int	value;
 
-	value = 0;
-	i = 1;
+int parsing(int ac, char **av, t_stack *stack)
+{
+	int i;
+	int value;
+
 	if (ac < 2)
 		return (0);
+	stack->size = 0;
+	i = 1;
 	if (ac == 2)
 	{
-		if (!single_argument(av[1], stack))
+		if (!process_single_argument(av[1], stack))
 			return (0);
 	}
 	else
@@ -81,7 +85,6 @@ int	parsing(int ac, char **av, t_stack *stack)
 		{
 			if (!invalid_value(av[i], &value) || !args_duplicate_check(stack, value))
 				return (0);
-			ft_printf("add value parsing '%d'\n", value);
 			add_node(stack, value);
 			i++;
 		}

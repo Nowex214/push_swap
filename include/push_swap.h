@@ -6,7 +6,7 @@
 /*   By: ehenry <ehenry@student.42luxembourg.lu>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 15:35:35 by ehenry            #+#    #+#             */
-/*   Updated: 2025/01/06 16:24:51 by ehenry           ###   ########.fr       */
+/*   Updated: 2025/01/25 18:23:59 by ehenry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,27 @@ typedef struct s_node
 typedef struct	s_stack
 {
 	int		size;
-	char	id;
 	t_node	*top;
 }	t_stack;
-//quickSort
-void		quickSort(int *arr, int low, int high);
+void		free_stack_on_error(t_stack *stack);
+//utils sort
+int			partitionA(t_stack *stack_a, t_stack *stack_b, int pivot, int size);
+void		pushBackToA(t_stack *stack_a, t_stack *stack_b, int count);
+int			findPivot(t_stack *stack_a, int	size);
+void		sortArray(int *arr, int	size);
+//quicksort
+void		quickSort(t_stack *stack_a, t_stack *stack_b, int size);
 //parser
 int			parsing(int ac, char **av, t_stack *stack);
-int			single_argument(char *arg, t_stack *stack);
-int			args_duplicate_check(t_stack *stack, int value);
-int			invalid_value(char *arg, int *value);
 //Check stack
 int			is_digit(const char *str);
-int			check_atoi(const char *str, int *res_s);
 int			duplicate_check(t_stack *stack, int value);
 void		add_node(t_stack *stack, int value);
 //utils
 void		ft_node_swap(t_node *first, t_node *second);
 void		free_split(char **split);
-int			ft_atoi_custom(const char *str);
 //main
-t_stack		*init_stack(char id);
+t_stack		*init_stack(void);
 void		free_stack(t_stack *stack);
 //swap
 void		sa(t_stack *stack);
@@ -61,4 +61,5 @@ void		rb(t_stack *stack);
 void		rra(t_stack *stack);
 void		rrb(t_stack *stack);
 void		rrr(t_stack *stack_a, t_stack *stack_b);
+
 #endif

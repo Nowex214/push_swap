@@ -6,40 +6,31 @@
 /*   By: ehenry <ehenry@student.42luxembourg.lu>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 18:18:05 by ehenry            #+#    #+#             */
-/*   Updated: 2025/01/06 16:28:55 by ehenry           ###   ########.fr       */
+/*   Updated: 2025/01/24 20:55:24 by ehenry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-t_stack	*init_stack(char id)
+t_stack	*init_stack(void)
 {
 	t_stack	*stack;
 
 	stack = malloc(sizeof(t_stack));
 	if (!stack)
 		return (NULL);
-	stack->size = 0;
 	stack->top = NULL;
-	stack->id = id;
+	stack->size = 0;
 	return (stack);
 }
 
-void	free_stack(t_stack *stack)
+int	handle_error(const char *msg, t_stack *stack_a, t_stack *stack_b)
 {
-	t_node	*curr;
-	t_node	*tmp;
-
-	if (!stack)
-		return;
-	curr = stack->top;
-	while (curr)
-	{
-		tmp = curr->next;
-		free (curr);
-		curr = tmp;
-	}
-	free(stack);
+	if (msg)
+		ft_printf("%s\n", msg);
+	free_stack(stack_a);
+	free_stack(stack_b);
+	return (1);
 }
 
 int	main(int ac, char **av)
@@ -47,20 +38,16 @@ int	main(int ac, char **av)
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 
-	stack_a = init_stack('A');
-	stack_b = init_stack('B');
-	if (!(stack_a || stack_b))
-	{
-		ft_printf("Error: memory allocation failed\n");
-		return(1);
-	}
+	if (ac < 2)
+		return (0);
+	stack_a = init_stack();
+	stack_b = init_stack();
+	if (!stack_a || !stack_b)
+		return (handle_error("Error: malloc failed", stack_a, stack_b));
 	if (!parsing(ac, av, stack_a))
-	{
-		ft_printf("Error: invalid arguments\n");
-		return (1);
-	}
-	ft_printf("Stacks successfully init and parsed\n");
-	
+		return (handle_error("Error: invalid arguments", stack_a, stack_b));
+	if (stack_a->size > 1)
+		quickSort(stack_a, stack_b, stack_a->size);
 	free_stack(stack_a);
 	free_stack(stack_b);
 	return (0);

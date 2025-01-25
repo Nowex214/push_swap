@@ -6,7 +6,7 @@
 /*   By: ehenry <ehenry@student.42luxembourg.lu>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 18:44:28 by ehenry            #+#    #+#             */
-/*   Updated: 2025/01/06 13:14:16 by ehenry           ###   ########.fr       */
+/*   Updated: 2025/01/25 18:18:36 by ehenry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,48 +16,23 @@ void	ft_node_swap(t_node *first, t_node *second)
 {
 	int	tmp;
 
-	if (!(first || second))
-		return;
-	tmp = first->value;
-	first->value = second->value;
-	second->value = tmp;
+	if (first && second)
+	{
+		tmp = first->value;
+		first->value = second->value;
+		second->value = tmp;
+	}
 }
 
-void	free_split(char **split)
+void add_node(t_stack *stack, int value)
 {
-	int	i;
+    t_node *new_node;
 
-	i = 0;
-	while (split[i])
-	{
-		free(split[i]);
-		i++;
-	}
-	free(split);
-}
-
-int	ft_atoi_custom(const char *str)
-{
-	long	sign;
-	long	result;
-
-	sign = 1;
-	result = 0;
-	while (*str == ' ' || (*str >= 9 && *str <= 13))
-		str++;
-	if (*str == '-' || *str == '+')
-	{
-		if (*str == '-')
-			sign = -1;
-		str++;
-	}
-	while (*str >= '0' && *str <= '9')
-	{
-		result = result * 10 + (*str - '0');
-		str++;
-	}
-	result *= sign;
-	if (result < INT_MIN || result > INT_MAX)
-		return (0);
-	return ((int)(result));
+    new_node = malloc(sizeof(t_node));
+    if (!new_node)
+        return;
+    new_node->value = value;
+    new_node->next = stack->top;
+    stack->top = new_node;
+    stack->size++;
 }

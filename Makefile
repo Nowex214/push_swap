@@ -5,15 +5,20 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra -g -I$(LIBFT_DIR)
 AR = ar rcs
 RM = rm -f
-ECHO = echo
+ECHO = echo -e
 
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
+
+
 SRCS = srcs/main.c\
+		srcs/free.c\
 		srcs/utils.c\
+		srcs/quicksort/utils_sort.c\
 		srcs/check.c\
 		srcs/parsing.c\
+		srcs/quicksort/quicksort.c\
 		srcs/operation/swap.c\
 		srcs/operation/push.c\
 		srcs/operation/rotate.c\
@@ -34,8 +39,10 @@ PURPLE		=	\033[0;95m
 
 all: $(NAME)
 
+
 $(NAME): $(OBJS) $(LIBFT)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME) || { $(ECHO) "$(RED)Error: Compilation failed!$(DEF_COLOR)"; exit 1; }
+
 
 %.o: %.c
 	$(eval CURRENT=$(shell echo $$(($(CURRENT)+1))))

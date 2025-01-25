@@ -1,49 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quick_sort.c                                       :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ehenry <ehenry@student.42luxembourg.lu>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 15:52:51 by ehenry            #+#    #+#             */
-/*   Updated: 2025/01/06 16:30:31 by ehenry           ###   ########.fr       */
+/*   Created: 2025/01/25 17:59:13 by ehenry            #+#    #+#             */
+/*   Updated: 2025/01/25 18:39:20 by ehenry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-static int	partition(int *arr, int low, int high)
+
+void	free_split(char **split)
 {
 	int	i;
-	int	j;
-	int	pivot;
 
-	pivot = arr[high];
-	i = low;
-	j = high;
-
-	while (j < i)
+	i = 0;
+	if (!split)
+		return;
+	while (split[i])
 	{
-		if (arr[j] < pivot)
-		{
-			i++;
-			ft_swap(&arr[i], &arr[j]);
-		}
+		free(split[i]);
+		i++;
 	}
-	swap(&arr[i], &arr[high]);
-	return (i);
+	free(split);
 }
 
-void	quickSort(int *arr, int low, int high)
+void free_stack(t_stack *stack)
 {
-	int	pi;
+    t_node *curr;
+    t_node *tmp;
 
-	if (low < high)
-	{
-		pi = partition(arr, low, high);
-		quickSort(arr, low, pi - 1);
-		quickSort(arr, pi + 1, high);
-	}
+    if (!stack)
+        return;
+    curr = stack->top;
+    while (curr)
+    {
+        tmp = curr;
+        curr = curr->next;
+        free(tmp);
+    }
+    free(stack);
 }
-
-void	

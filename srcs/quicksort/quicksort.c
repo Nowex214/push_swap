@@ -1,39 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   quicksort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ehenry <ehenry@student.42luxembourg.lu>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/03 18:03:11 by ehenry            #+#    #+#             */
-/*   Updated: 2025/01/25 18:10:28 by ehenry           ###   ########.fr       */
+/*   Created: 2025/01/24 18:59:12 by ehenry            #+#    #+#             */
+/*   Updated: 2025/01/24 20:38:54 by ehenry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-void	sa(t_stack *stack)
+void	quickSort(t_stack *stack_a, t_stack *stack_b, int size)
 {
-	t_node	*first;
-	t_node	*second;
+	int	pivot;
+	int	low;
+	int	high;
 
-	if (!stack || stack->size < 2)
+	if (size < 2)
 		return;
-	first = stack->top;
-	second = first->next;
-	ft_node_swap(first, second);
-	write (1, "sa\n", 3);
+	if (stack_a->size < size)
+		size = stack_a->size;
+	if (size < 2)
+		return;
+	pivot = findPivot(stack_a, size);
+	low = partitionA(stack_a, stack_b, pivot, size);
+	high = size - low;
+	if (low == 0 || low == size)
+		return;
+	quickSort(stack_a, stack_b, high);
+	pushBackToA(stack_a, stack_b, low);
+	quickSort(stack_a, stack_b, low);
 }
 
-void	sb(t_stack *stack)
-{
-	sa(stack);
-	write (1, "sb\n", 3);
-}
-
-void	ss(t_stack *stack_a, t_stack *stack_b)
-{
-	sa(stack_a);
-	sb(stack_b);
-	write (1, "ss\n", 3);
-}
