@@ -6,7 +6,7 @@
 /*   By: ehenry <ehenry@student.42luxembourg.lu>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 18:44:28 by ehenry            #+#    #+#             */
-/*   Updated: 2025/01/25 18:18:36 by ehenry           ###   ########.fr       */
+/*   Updated: 2025/01/27 09:42:44 by ehenry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ void	ft_node_swap(t_node *first, t_node *second)
 	}
 }
 
-void add_node(t_stack *stack, int value)
+void	add_node(t_stack *stack, int value)
 {
-    t_node *new_node;
+	t_node	*new_node;
 
-    new_node = malloc(sizeof(t_node));
-    if (!new_node)
-        return;
-    new_node->value = value;
-    new_node->next = stack->top;
-    stack->top = new_node;
-    stack->size++;
+	new_node = malloc(sizeof(t_node));
+	if (!new_node)
+		return ;
+	new_node->value = value;
+	new_node->next = stack->top;
+	stack->top = new_node;
+	stack->size++;
 }

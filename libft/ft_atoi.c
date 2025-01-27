@@ -6,7 +6,7 @@
 /*   By: ehenry <ehenry@student.42luxembourg.lu>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/06 23:16:15 by ehenry            #+#    #+#             */
-/*   Updated: 2025/01/05 16:37:38 by ehenry           ###   ########.fr       */
+/*   Updated: 2025/01/27 09:48:03 by ehenry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 int	ft_atoi(const char *str)
 {
-	int result = 0;
-	int sign = 1;
+	int	result;
+	int	sign;
 
+	result = 0;
+	sign = 1;
 	while (*str == ' ' || (*str >= 9 && *str <= 13))
 		str++;
 	if (*str == '-' || *str == '+')

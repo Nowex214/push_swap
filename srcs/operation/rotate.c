@@ -6,7 +6,7 @@
 /*   By: ehenry <ehenry@student.42luxembourg.lu>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:58:07 by ehenry            #+#    #+#             */
-/*   Updated: 2025/01/25 18:10:42 by ehenry           ###   ########.fr       */
+/*   Updated: 2025/01/27 09:42:51 by ehenry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ra(t_stack *stack)
 	t_node	*last;
 
 	if (!stack || stack->size < 2)
-		return;
+		return ;
 	first = stack->top;
 	stack->top = stack->top->next;
 	last = stack->top;
@@ -26,11 +26,11 @@ void	ra(t_stack *stack)
 		last = last->next;
 	last->next = first;
 	first->next = NULL;
-	write (1, "ra\n", 3);
+	write(1, "ra\n", 3);
 }
 
 void	rb(t_stack *stack)
 {
 	ra(stack);
-	write (1, "rb\n", 3);
+	write(1, "rb\n", 3);
 }

@@ -5,7 +5,7 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra -g -I$(LIBFT_DIR)
 AR = ar rcs
 RM = rm -f
-ECHO = echo -e
+ECHO = echo
 
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a

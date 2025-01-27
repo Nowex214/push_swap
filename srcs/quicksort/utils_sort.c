@@ -6,13 +6,13 @@
 /*   By: ehenry <ehenry@student.42luxembourg.lu>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 19:06:08 by ehenry            #+#    #+#             */
-/*   Updated: 2025/01/24 21:20:06 by ehenry           ###   ########.fr       */
+/*   Updated: 2025/01/27 09:43:57 by ehenry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/push_swap.h"
 
-int	partitionA(t_stack *stack_a, t_stack *stack_b, int pivot, int size)
+int	partition_a(t_stack *stack_a, t_stack *stack_b, int pivot, int size)
 {
 	int	i;
 	int	low;
@@ -33,7 +33,7 @@ int	partitionA(t_stack *stack_a, t_stack *stack_b, int pivot, int size)
 	return (low);
 }
 
-void	pushBackToA(t_stack *stack_a, t_stack *stack_b, int count)
+void	push_back_to_a(t_stack *stack_a, t_stack *stack_b, int count)
 {
 	while (count > 0)
 	{
@@ -42,14 +42,14 @@ void	pushBackToA(t_stack *stack_a, t_stack *stack_b, int count)
 	}
 }
 
-int	findPivot(t_stack *stack_a, int size)
+int	find_pivot(t_stack *stack_a, int size)
 {
 	int		*tmp;
 	int		i;
 	t_node	*curr;
 	int		pivot;
 
-	i = 0; 
+	i = 0;
 	tmp = malloc(sizeof(int) * size);
 	if (!tmp)
 		return (0);
@@ -60,13 +60,13 @@ int	findPivot(t_stack *stack_a, int size)
 		curr = curr->next;
 		i++;
 	}
-	sortArray(tmp, i);
+	sort_array(tmp, i);
 	pivot = tmp[i / 2];
 	free(tmp);
 	return (pivot);
 }
 
-void	sortArray(int *arr, int	size)
+void	sort_array(int *arr, int size)
 {
 	int	i;
 	int	j;
