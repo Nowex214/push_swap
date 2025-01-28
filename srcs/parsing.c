@@ -6,7 +6,7 @@
 /*   By: ehenry <ehenry@student.42luxembourg.lu>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 14:56:00 by ehenry            #+#    #+#             */
-/*   Updated: 2025/01/27 10:55:00 by ehenry           ###   ########.fr       */
+/*   Updated: 2025/01/28 12:10:30 by ehenry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	invalid_value(char *arg, int *value)
 	long	tmp;
 
 	if (!is_digit(arg))
-		return(0);
+		return (0);
 	tmp = ft_atoi(arg);
 	if (tmp < INT_MIN || tmp > INT_MAX)
 	{

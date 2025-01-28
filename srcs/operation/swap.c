@@ -6,7 +6,7 @@
 /*   By: ehenry <ehenry@student.42luxembourg.lu>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 18:03:11 by ehenry            #+#    #+#             */
-/*   Updated: 2025/01/27 09:43:24 by ehenry           ###   ########.fr       */
+/*   Updated: 2025/01/28 12:41:01 by ehenry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,14 @@ void	sa(t_stack *stack)
 
 void	sb(t_stack *stack)
 {
-	sa(stack);
+	t_node	*first;
+	t_node	*second;
+
+	if (!stack || stack->size < 2)
+		return ;
+	first = stack->top;
+	second = first->next;
+	ft_node_swap(first, second);
 	write(1, "sb\n", 3);
 }
 

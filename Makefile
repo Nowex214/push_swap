@@ -10,15 +10,16 @@ ECHO = echo
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-
-
 SRCS = srcs/main.c\
 		srcs/free.c\
 		srcs/utils.c\
 		srcs/quicksort/utils_sort.c\
+		srcs/quicksort/utils_sort2.c\
+		srcs/quicksort/push_swap.c\
+		srcs/quicksort/sort.c\
 		srcs/check.c\
 		srcs/parsing.c\
-		srcs/quicksort/quicksort.c\
+		srcs/quicksort/chunk.c\
 		srcs/operation/swap.c\
 		srcs/operation/push.c\
 		srcs/operation/rotate.c\

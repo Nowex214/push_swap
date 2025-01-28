@@ -6,7 +6,7 @@
 /*   By: ehenry <ehenry@student.42luxembourg.lu>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 15:35:35 by ehenry            #+#    #+#             */
-/*   Updated: 2025/01/27 09:48:33 by ehenry           ###   ########.fr       */
+/*   Updated: 2025/01/28 12:49:05 by ehenry           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,27 @@ typedef struct s_stack
 	int				size;
 	t_node			*top;
 }					t_stack;
-
+// sort
+void				sort_three(t_stack *stack);
+void				sort_five(t_stack *stack_a, t_stack *stack_b);
 // utils sort
-int					partition_a(t_stack *stack_a, t_stack *stack_b, int pivot,
-						int size);
+int					find_next_in_chunk(t_stack *stack, int chunk_min,
+						int chunk_max);
 void				push_back_to_a(t_stack *stack_a, t_stack *stack_b,
 						int count);
 int					find_pivot(t_stack *stack_a, int size);
+int					find_pivot(t_stack *stack_a, int size);
 void				sort_array(int *arr, int size);
+void				push_back(t_stack *stack_a, t_stack *stack_b);
+int					find_min_pos(t_stack *stack);
+int					find_max_pos(t_stack *stack_b, int count);
+int					find_next_in_chunk(t_stack *stack, int chunk_min,
+						int chunk_max);
+int					get_max(t_stack *stack);
+int					get_min(t_stack *stack);
 // quicksort
-void				quick_sort(t_stack *stack_a, t_stack *stack_b, int size);
+void				chunk_sort(t_stack *stack_a, t_stack *stack_b);
+void				push_swap(t_stack *stack_a, t_stack *stack_b);
 // parser
 int					parsing(int ac, char **av, t_stack *stack);
 // Check stack
@@ -46,6 +57,7 @@ void				add_node(t_stack *stack, int value);
 // utils
 void				ft_node_swap(t_node *first, t_node *second);
 void				free_split(char **split);
+int					is_sorted(t_stack *stack, int size);
 // main
 t_stack				*init_stack(void);
 void				free_stack(t_stack *stack);
